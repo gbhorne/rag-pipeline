@@ -3,4 +3,4 @@ __pycache__/
 .env
 .chroma/
 chroma_db/
-verification_report.txt
+

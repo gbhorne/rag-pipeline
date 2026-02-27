@@ -1,0 +1,83 @@
+RAG Pipeline — Verification Report
+Date: February 26, 2026
+========================================
+
+--- Section 1: Python Environment ---
+
+  [PASS] Python installed (Python 3.12.3)
+  [PASS] Package: chromadb
+  [PASS] Package: google-genai
+  [PASS] GOOGLE_API_KEY set
+
+--- Section 2: Phase 2 Pipeline Execution ---
+
+  [PASS] Pipeline executed without errors
+  [PASS] Output: PTO answer correct
+  [PASS] Output: Meal limit correct
+  [PASS] Output: Password answer present
+  [PASS] Output: Unanswerable handled
+  [PASS] Output: Sources cited
+  [PASS] Output: Phase 2 complete message
+  [PASS] Output: Pattern thesis stated
+
+  --- Pipeline Output ---
+  ============================================================
+  STEP 1: GENERATION — Complete RAG Pipeline
+  ============================================================
+  
+    Vector store: 8 chunks loaded
+  
+    Q: How many PTO days for a 4-year employee?
+    A: A 4-year employee receives 20 PTO days per year.
+    Sources: pto_policy.txt
+    Prompt length: 602 chars
+  
+    Q: What is the daily meal limit for international travel?
+    A: The daily meal limit for international travel is $100.
+    Sources: expense_policy.txt
+    Prompt length: 686 chars
+  
+    Q: What are the password requirements?
+    A: The password requirements are:
+  *   Minimum 14 characters.
+  *   Must include uppercase letters, lowercase letters, numbers, and special characters.
+  *   Passwords expire every 90 days.
+  *   Users cannot reuse their last 12 passwords.
+  *   Multi-Factor Authentication (MFA) is mandatory.
+    Sources: security_policy.txt
+    Prompt length: 665 chars
+  
+    Q: What is the parental leave policy?
+    A: I don't have information about that in the available documents.
+    Sources: pto_policy.txt
+    Prompt length: 596 chars
+  
+  ============================================================
+  PHASE 2 COMPLETE — Full RAG Pipeline with ChromaDB
+  ============================================================
+  
+  What YOU built:
+    1. Chunking     — split documents into overlapping pieces
+    2. Embedding    — converted text to vectors (gemini-embedding-001)
+    3. Vector Store — stored vectors in ChromaDB
+    4. Retrieval    — similarity search to find relevant chunks
+    5. Generation   — built grounded prompt, called Gemini
+  
+  What Vertex AI did in Phase 1 (same steps, managed):
+    1. ChunkingConfig     → automatic chunking on upload
+    2. text-embedding-004 → automatic embedding on upload
+    3. Cloud Spanner      → managed vector database
+    4. retrieval_query()  → managed similarity search
+    5. Tool.from_retrieval → automatic prompt building
+  
+  THE RAG PATTERN IS THE SAME.
+  Only the infrastructure layer changed.
+
+========================================
+  VERIFICATION SUMMARY
+========================================
+
+  Passed: 12
+  Failed: 0
+
+  STATUS: ALL CHECKS PASSED
