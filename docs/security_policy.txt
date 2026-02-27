@@ -1,0 +1,5 @@
+Acme Corp -- IT Security Policy (February 2025)
+Passwords: minimum 14 characters, uppercase+lowercase+numbers+special.
+Expire every 90 days. Cannot reuse last 12. MFA mandatory.
+Report incidents to security@acmecorp.com within 1 hour.
+Remote: VPN required, WPA3 wifi, no company data on personal devices.
