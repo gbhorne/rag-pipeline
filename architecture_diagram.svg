@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 750" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1a73e8"/><stop offset="100%" style="stop-color:#4285f4"/>
+    </linearGradient>
+    <linearGradient id="phase1Grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f0fe"/><stop offset="100%" style="stop-color:#d2e3fc"/>
+    </linearGradient>
+    <linearGradient id="phase2Grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#fce8e6"/><stop offset="100%" style="stop-color:#fadbd8"/>
+    </linearGradient>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  <rect width="1100" height="750" fill="#f8f9fa" rx="8"/>
+  <rect x="30" y="20" width="1040" height="55" rx="8" fill="url(#headerGrad)" filter="url(#shadow)"/>
+  <text x="550" y="55" text-anchor="middle" fill="white" font-size="22" font-weight="bold">RAG Pipeline Architecture — Vertex AI vs ChromaDB</text>
+  <rect x="350" y="90" width="400" height="35" rx="6" fill="#34a853" filter="url(#shadow)"/>
+  <text x="550" y="113" text-anchor="middle" fill="white" font-size="14" font-weight="bold">THE RAG PATTERN: Documents → Chunk → Embed → Store → Retrieve → Generate</text>
+  <rect x="30" y="140" width="510" height="580" rx="10" fill="url(#phase1Grad)" stroke="#4285f4" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="30" y="140" width="510" height="40" rx="10" fill="#4285f4"/>
+  <rect x="30" y="170" width="510" height="10" fill="#4285f4"/>
+  <text x="285" y="166" text-anchor="middle" fill="white" font-size="16" font-weight="bold">Phase 1: Vertex AI RAG Engine (Managed)</text>
+  <rect x="55" y="195" width="460" height="50" rx="8" fill="white" stroke="#4285f4" stroke-width="1.5"/>
+  <text x="75" y="216" fill="#4285f4" font-size="11" font-weight="bold">STEP 1</text>
+  <text x="130" y="216" fill="#333" font-size="13" font-weight="bold">Documents → Cloud Storage</text>
+  <text x="75" y="235" fill="#666" font-size="11">rag.upload_file(corpus_name, path, display_name)</text>
+  <polygon points="280,258 285,268 290,258" fill="#4285f4"/>
+  <rect x="55" y="270" width="460" height="50" rx="8" fill="white" stroke="#4285f4" stroke-width="1.5"/>
+  <text x="75" y="291" fill="#4285f4" font-size="11" font-weight="bold">STEP 2</text>
+  <text x="130" y="291" fill="#333" font-size="13" font-weight="bold">Chunking</text>
+  <rect x="230" y="280" width="90" height="22" rx="4" fill="#4285f4"/>
+  <text x="275" y="296" text-anchor="middle" fill="white" font-size="10" font-weight="bold">AUTOMATIC</text>
+  <text x="75" y="310" fill="#666" font-size="11">ChunkingConfig(chunk_size=512, chunk_overlap=100)</text>
+  <polygon points="280,333 285,343 290,333" fill="#4285f4"/>
+  <rect x="55" y="345" width="460" height="50" rx="8" fill="white" stroke="#4285f4" stroke-width="1.5"/>
+  <text x="75" y="366" fill="#4285f4" font-size="11" font-weight="bold">STEP 3</text>
+  <text x="130" y="366" fill="#333" font-size="13" font-weight="bold">Embedding</text>
+  <rect x="230" y="355" width="90" height="22" rx="4" fill="#4285f4"/>
+  <text x="275" y="371" text-anchor="middle" fill="white" font-size="10" font-weight="bold">AUTOMATIC</text>
+  <text x="75" y="385" fill="#666" font-size="11">text-embedding-004 (768 dimensions)</text>
+  <polygon points="280,408 285,418 290,408" fill="#4285f4"/>
+  <rect x="55" y="420" width="460" height="50" rx="8" fill="white" stroke="#4285f4" stroke-width="1.5"/>
+  <text x="75" y="441" fill="#4285f4" font-size="11" font-weight="bold">STEP 4</text>
+  <text x="130" y="441" fill="#333" font-size="13" font-weight="bold">Vector Store → Cloud Spanner</text>
+  <text x="75" y="460" fill="#666" font-size="11">Managed vector database — no configuration needed</text>
+  <polygon points="280,483 285,493 290,483" fill="#4285f4"/>
+  <rect x="55" y="495" width="460" height="50" rx="8" fill="white" stroke="#4285f4" stroke-width="1.5"/>
+  <text x="75" y="516" fill="#4285f4" font-size="11" font-weight="bold">STEP 5</text>
+  <text x="130" y="516" fill="#333" font-size="13" font-weight="bold">Retrieval</text>
+  <text x="75" y="535" fill="#666" font-size="11">rag.retrieval_query(text, top_k=2, threshold=0.5)</text>
+  <polygon points="280,558 285,568 290,558" fill="#4285f4"/>
+  <rect x="55" y="570" width="460" height="65" rx="8" fill="white" stroke="#4285f4" stroke-width="1.5"/>
+  <text x="75" y="591" fill="#4285f4" font-size="11" font-weight="bold">STEP 6</text>
+  <text x="130" y="591" fill="#333" font-size="13" font-weight="bold">Grounded Generation</text>
+  <text x="75" y="610" fill="#666" font-size="11">Tool.from_retrieval() + Gemini 2.5 Flash</text>
+  <text x="75" y="627" fill="#666" font-size="11">Prompt building is automatic</text>
+  <rect x="55" y="650" width="460" height="55" rx="8" fill="#34a853" filter="url(#shadow)"/>
+  <text x="285" y="673" text-anchor="middle" fill="white" font-size="12" font-weight="bold">✓ 20 PTO days per year</text>
+  <text x="285" y="693" text-anchor="middle" fill="white" font-size="11">✓ Parental leave: "sources do not contain information"</text>
+  <rect x="560" y="140" width="510" height="580" rx="10" fill="url(#phase2Grad)" stroke="#ea4335" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="560" y="140" width="510" height="40" rx="10" fill="#ea4335"/>
+  <rect x="560" y="170" width="510" height="10" fill="#ea4335"/>
+  <text x="815" y="166" text-anchor="middle" fill="white" font-size="16" font-weight="bold">Phase 2: ChromaDB (Self-Built)</text>
+  <rect x="585" y="195" width="460" height="50" rx="8" fill="white" stroke="#ea4335" stroke-width="1.5"/>
+  <text x="605" y="216" fill="#ea4335" font-size="11" font-weight="bold">STEP 1</text>
+  <text x="660" y="216" fill="#333" font-size="13" font-weight="bold">Documents → Local Filesystem</text>
+  <text x="605" y="235" fill="#666" font-size="11">load_documents("docs/") — plain Python file I/O</text>
+  <polygon points="810,258 815,268 820,258" fill="#ea4335"/>
+  <rect x="585" y="270" width="460" height="50" rx="8" fill="white" stroke="#ea4335" stroke-width="1.5"/>
+  <text x="605" y="291" fill="#ea4335" font-size="11" font-weight="bold">STEP 2</text>
+  <text x="660" y="291" fill="#333" font-size="13" font-weight="bold">Chunking</text>
+  <rect x="760" y="280" width="90" height="22" rx="4" fill="#ea4335"/>
+  <text x="805" y="296" text-anchor="middle" fill="white" font-size="10" font-weight="bold">YOU BUILD</text>
+  <text x="605" y="310" fill="#666" font-size="11">chunk_text(text, chunk_size=200, chunk_overlap=50)</text>
+  <polygon points="810,333 815,343 820,333" fill="#ea4335"/>
+  <rect x="585" y="345" width="460" height="50" rx="8" fill="white" stroke="#ea4335" stroke-width="1.5"/>
+  <text x="605" y="366" fill="#ea4335" font-size="11" font-weight="bold">STEP 3</text>
+  <text x="660" y="366" fill="#333" font-size="13" font-weight="bold">Embedding</text>
+  <rect x="760" y="355" width="90" height="22" rx="4" fill="#ea4335"/>
+  <text x="805" y="371" text-anchor="middle" fill="white" font-size="10" font-weight="bold">YOU BUILD</text>
+  <text x="605" y="385" fill="#666" font-size="11">gemini-embedding-001 → 768-dim vectors (explicit)</text>
+  <polygon points="810,408 815,418 820,408" fill="#ea4335"/>
+  <rect x="585" y="420" width="460" height="50" rx="8" fill="white" stroke="#ea4335" stroke-width="1.5"/>
+  <text x="605" y="441" fill="#ea4335" font-size="11" font-weight="bold">STEP 4</text>
+  <text x="660" y="441" fill="#333" font-size="13" font-weight="bold">Vector Store → ChromaDB (Local)</text>
+  <text x="605" y="460" fill="#666" font-size="11">collection.add(ids, embeddings, documents, metadatas)</text>
+  <polygon points="810,483 815,493 820,483" fill="#ea4335"/>
+  <rect x="585" y="495" width="460" height="50" rx="8" fill="white" stroke="#ea4335" stroke-width="1.5"/>
+  <text x="605" y="516" fill="#ea4335" font-size="11" font-weight="bold">STEP 5</text>
+  <text x="660" y="516" fill="#333" font-size="13" font-weight="bold">Retrieval</text>
+  <text x="605" y="535" fill="#666" font-size="11">collection.query(query_embeddings, n_results=2)</text>
+  <polygon points="810,558 815,568 820,558" fill="#ea4335"/>
+  <rect x="585" y="570" width="460" height="65" rx="8" fill="white" stroke="#ea4335" stroke-width="1.5"/>
+  <text x="605" y="591" fill="#ea4335" font-size="11" font-weight="bold">STEP 6</text>
+  <text x="660" y="591" fill="#333" font-size="13" font-weight="bold">Grounded Generation</text>
+  <text x="605" y="610" fill="#666" font-size="11">Custom prompt template + Gemini 2.5 Flash</text>
+  <text x="605" y="627" fill="#666" font-size="11">YOU build the prompt with context injection</text>
+  <rect x="585" y="650" width="460" height="55" rx="8" fill="#34a853" filter="url(#shadow)"/>
+  <text x="815" y="673" text-anchor="middle" fill="white" font-size="12" font-weight="bold">✓ 20 PTO days/year</text>
+  <text x="815" y="693" text-anchor="middle" fill="white" font-size="11">✓ Parental leave: "I don't have information"</text>
+  <rect x="475" y="660" width="150" height="35" rx="17" fill="#fbbc04" stroke="#f9a825" stroke-width="2" filter="url(#shadow)"/>
+  <text x="550" y="682" text-anchor="middle" fill="#333" font-size="13" font-weight="bold">SAME RESULTS</text>
+  <line x1="515" y1="677" x2="475" y2="677" stroke="#f9a825" stroke-width="2"/>
+  <line x1="585" y1="677" x2="625" y2="677" stroke="#f9a825" stroke-width="2"/>
+</svg>
