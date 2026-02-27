@@ -48,15 +48,14 @@ This project implements the same RAG pipeline using two backends: Google Vertex 
 
 ## RAG Pipeline Flow
 
-```
-                Phase 1 (Vertex AI)          Phase 2 (ChromaDB)
-1. LOAD DOCS     GCS bucket                   Local filesystem
-2. CHUNK          Automatic (ChunkingConfig)   chunk_text() custom
-3. EMBED          text-embedding-004 (auto)    gemini-embedding-001 (explicit)
-4. STORE          Cloud Spanner (managed)      ChromaDB (in-memory)
-5. RETRIEVE       rag.retrieval_query()        collection.query()
-6. GENERATE       Gemini + Tool.from_retrieval Gemini + custom prompt
-```
+| Step | Phase 1 — Vertex AI (Managed) | Phase 2 — ChromaDB (Self-Built) |
+|------|-------------------------------|----------------------------------|
+| **1. Load** | Upload to GCS bucket | Read from local filesystem |
+| **2. Chunk** | Automatic via `ChunkingConfig` | Custom `chunk_text()` function |
+| **3. Embed** | `text-embedding-004` (automatic on upload) | `gemini-embedding-001` (explicit API call) |
+| **4. Store** | Cloud Spanner (`RagManagedDb`) | ChromaDB (local, in-memory) |
+| **5. Retrieve** | `rag.retrieval_query()` | `collection.query()` |
+| **6. Generate** | `Tool.from_retrieval()` + Gemini 2.5 Flash | Custom prompt template + Gemini 2.5 Flash |
 
 ## Distance Scores (Phase 2)
 
