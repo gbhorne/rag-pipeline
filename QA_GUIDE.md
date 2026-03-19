@@ -6,7 +6,7 @@
 RAG connects LLMs to external knowledge at query time. Instead of relying solely on training data, the model retrieves relevant documents before responding, grounding answers in source material and reducing hallucination.
 
 **Q: Why not fine-tune?**
-Fine-tuning bakes knowledge into weights — expensive, slow, requires retraining when data changes. RAG is dynamic: update documents and answers change immediately.
+Fine-tuning bakes knowledge into weights; expensive, slow, requires retraining when data changes. RAG is dynamic: update documents and answers change immediately.
 
 **Q: How does RAG compare to context stuffing?**
 Pasting entire documents into prompts hits token limits and costs more. RAG retrieves only the 2-3 most relevant chunks per query.
